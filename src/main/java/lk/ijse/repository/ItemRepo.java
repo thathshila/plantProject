@@ -100,6 +100,22 @@ public class ItemRepo {
         }
         return itemList;
     }
+
+    public static List<String> getItemId() throws SQLException {
+        String sql = "SELECT Item_id FROM Items";
+
+        ResultSet resultSet = DbConnection.getInstance()
+                .getConnection()
+                .prepareStatement(sql)
+                .executeQuery();
+
+        List<String> idList = new ArrayList<>();
+        while (resultSet.next()) {
+            idList.add(resultSet.getString(1));
+        }
+        return idList;
     }
+    }
+
 
 

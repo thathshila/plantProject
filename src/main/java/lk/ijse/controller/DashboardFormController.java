@@ -7,7 +7,6 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
-
 import java.io.IOException;
 
 public class DashboardFormController {
@@ -31,8 +30,8 @@ public class DashboardFormController {
     @FXML
     private Button btnSUPPPLIERS;
 
-
-
+    @FXML
+    private Button btnORDERS;
 
     @FXML
     void btnCUSTOMERSOnAction(ActionEvent event) throws IOException {
@@ -49,6 +48,7 @@ public class DashboardFormController {
     @FXML
     void btnEMPLOYEESOnAction(ActionEvent event) throws IOException {
         AnchorPane rootNode = FXMLLoader.load(this.getClass().getResource("/view/EmployeeForm.fxml"));
+
         Scene scene = new Scene(rootNode);
 
         Stage stage = (Stage) this.rootNode.getScene().getWindow();
@@ -92,7 +92,7 @@ public class DashboardFormController {
         Stage stage = (Stage) this.rootNode.getScene().getWindow();
         stage.setScene(scene);
         stage.centerOnScreen();
-        stage.setTitle("Order Form");
+        stage.setTitle("Place Order Form");
     }
 
     @FXML
@@ -104,6 +104,17 @@ public class DashboardFormController {
         Stage stage = (Stage) this.rootNode.getScene().getWindow();
         stage.setScene(scene);
         stage.setTitle("Supplier Form");
+        stage.centerOnScreen();
+    }
+
+    public void btnORDERSOnAction(ActionEvent actionEvent) throws IOException {
+        AnchorPane rootNode = FXMLLoader.load(this.getClass().getResource("/view/OrderForm.fxml"));
+
+        Scene scene = new Scene(rootNode);
+
+        Stage stage = (Stage) this.rootNode.getScene().getWindow();
+        stage.setScene(scene);
+        stage.setTitle("Order Form");
         stage.centerOnScreen();
     }
 }

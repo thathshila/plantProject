@@ -11,14 +11,15 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
+import lk.ijse.model.Customer;
 import lk.ijse.model.Employee;
-import lk.ijse.model.Item;
+import lk.ijse.model.User;
 import lk.ijse.model.tm.EmployeeTm;
-import lk.ijse.model.tm.ItemTm;
 import lk.ijse.repository.CustomerRepo;
 import lk.ijse.repository.EmployeeRepo;
-import lk.ijse.repository.ItemRepo;
+import lk.ijse.repository.UserRepo;
 
+import java.lang.String;
 import java.io.IOException;
 import java.sql.Date;
 import java.sql.SQLException;
@@ -73,7 +74,7 @@ public class EmployeeFormController {
     private TableColumn<?, ?> colWorkHours;
 
     @FXML
-    private JFXComboBox<?> comUserId;
+    private JFXComboBox<String > comUserId;
 
     @FXML
     private AnchorPane rootNode;
@@ -112,7 +113,22 @@ public class EmployeeFormController {
         setCellValueFactory();
         loadAllEmployees();
         setDate();
+       getUserIds();
     }
+
+    private void getUserIds() {
+        ObservableList<String> obList = FXCollections.observableArrayList();
+        try {
+            List<String> userList = UserRepo.getIds();
+            for (String id : userList){
+                obList.add(id);
+            }
+            comUserId.setItems(obList);
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
     private void setDate() {
         LocalDate now = LocalDate.now();
         txtDate.setText(String.valueOf(now));
@@ -188,7 +204,7 @@ public class EmployeeFormController {
         String Employee_id = txtEmployeeId.getText();
 
         try {
-            boolean isDeleted = CustomerRepo.DELETE(Employee_id);
+            boolean isDeleted = EmployeeRepo.DELETE(Employee_id);
             if(isDeleted) {
                 new Alert(Alert.AlertType.CONFIRMATION, "Employee deleted!").show();
             }
@@ -208,12 +224,14 @@ public class EmployeeFormController {
         String WorkingHours = txtWorkHours.getText();
         String Attendance = txtAttendance.getText();
         String Position = txtPosition.getText();
+        String userId = comUserId.getValue();
 
         try {
-            EmployeeRepo.save(Employee_id,Employee_name,Address,Contact,date,Salary,WorkingHours,Attendance,Position);
+            EmployeeRepo.save(Employee_id,Employee_name,Address,Contact,date,Salary,WorkingHours,Attendance,Position,userId);
         } catch (SQLException e) {
             new Alert(Alert.AlertType.ERROR, e.getMessage()).show();
         }
+        loadAllEmployees();
     }
 
     @FXML
@@ -225,5 +243,4 @@ public class EmployeeFormController {
     void btnUPDATEOnAction(ActionEvent event) {
 
     }
-
 }

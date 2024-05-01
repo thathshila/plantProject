@@ -223,11 +223,12 @@ public class SupplierFormController {
             txtSupplierName.setText(supplier.getSupplier_name());
             txtAddress.setText(supplier.getAddress());
           txtContact.setText(supplier.getContact());
-            txtNIC.setText(supplier.getNIC());
-       //   txtDate.setText(String.valueOf(supplier).getDate());
-           txtQuantity.setText(supplier.getQuantity());
             txtProductName.setText(supplier.getProductName());
-       //     txtUnitPrice.setText(String.valueOf(supplier).getPrice());
+            txtDate.setText(String.valueOf(supplier.getDate()));
+            txtUnitPrice.setText(String.valueOf(supplier.getPrice()));
+           txtQuantity.setText(supplier.getQuantity());
+            txtNIC.setText(supplier.getNIC());
+
         } else {
             new Alert(Alert.AlertType.INFORMATION, "supplier not found!").show();
         }

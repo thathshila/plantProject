@@ -43,7 +43,7 @@ public class LoginFormController {
         }
     }
     private void checkCredential(String username, String pw) throws SQLException, IOException {
-        String sql = "SELECT User_id,Password FROM User WHERE User_id = ?";
+        String sql = "SELECT User_name,Password FROM User WHERE User_name = ?";
 
         Connection connection = DbConnection.getInstance().getConnection();
         PreparedStatement pstm = connection.prepareStatement(sql);
@@ -65,14 +65,14 @@ public class LoginFormController {
     }
 
     private void navigateToTheDashboard() throws IOException {
-        AnchorPane rootNode = FXMLLoader.load(this.getClass().getResource("/view/DashboardForm.fxml"));
+        AnchorPane rootNode = FXMLLoader.load(this.getClass().getResource("/view/MainForm.fxml"));
 
         Scene scene = new Scene(rootNode);
 
         Stage stage = (Stage) this.rootNode.getScene().getWindow();
         stage.setScene(scene);
         stage.centerOnScreen();
-        stage.setTitle("Dashboard Form");
+        stage.setTitle("Main Form");
 }
     @FXML
    public void btnRegisterOnAction(ActionEvent event) throws IOException {

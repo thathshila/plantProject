@@ -11,7 +11,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import lk.ijse.model.User;
-import lk.ijse.model.tm.UserTm;
+
 import lk.ijse.repository.UserRepo;
 
 import java.io.IOException;
@@ -40,8 +40,6 @@ public class RegisterFormController {
     @FXML
     private AnchorPane rootNode;
 
-    @FXML
-    private TableView<UserTm> tblRegister;
 
     @FXML
     private TextField txtDate;
@@ -57,20 +55,20 @@ public class RegisterFormController {
 
     public void initialize() {
         setDate();
-        setCellValueFactory();
-        loadAllUsers();
+      //  setCellValueFactory();
+     //   loadAllUsers();
     }
     private void setDate() {
         LocalDate now = LocalDate.now();
         txtDate.setText(String.valueOf(now));
     }
-    private void setCellValueFactory() {
+  /*  private void setCellValueFactory() {
         colUserId.setCellValueFactory(new PropertyValueFactory<>("User_id"));
         colUserName.setCellValueFactory(new PropertyValueFactory<>("User_name"));
         colDate.setCellValueFactory(new PropertyValueFactory<>("Date"));
         colPassword.setCellValueFactory(new PropertyValueFactory<>("Password"));
-    }
-    private void loadAllUsers() {
+    }*/
+   /* private void loadAllUsers() {
         ObservableList<UserTm> obList = FXCollections.observableArrayList();
 
         try {
@@ -90,7 +88,7 @@ public class RegisterFormController {
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
-    }
+    }*/
     @FXML
     void btnRegisterNowOnAction(ActionEvent event) throws IOException {
         String User_id = txtUserId.getText();

@@ -91,6 +91,7 @@ public class CustomerFormController {
         LocalDate now = LocalDate.now();
         txtDate.setText(String.valueOf(now));
     }
+
     private void setCellValueFactory() {
         colCustomerId.setCellValueFactory(new PropertyValueFactory<>("Customer_id"));
         colName.setCellValueFactory(new PropertyValueFactory<>("Customer_name"));
@@ -124,11 +125,11 @@ public class CustomerFormController {
     }
         @FXML
         void btnBACKOnAction(ActionEvent event) throws IOException {
-                AnchorPane anchorPane = FXMLLoader.load(getClass().getResource("/view/DashboardForm.fxml"));
+                AnchorPane anchorPane = FXMLLoader.load(getClass().getResource("/view/MainForm.fxml"));
                 Stage stage = (Stage) rootNode.getScene().getWindow();
 
                 stage.setScene(new Scene(anchorPane));
-                stage.setTitle("Dashboard Form");
+                stage.setTitle("Main Form");
                 stage.centerOnScreen();
         }
 
@@ -187,7 +188,8 @@ public class CustomerFormController {
                 txtContact.setText(customer.getContact());
                 txtAddress.setText(customer.getAddress());
                 txtNICNumber.setText(customer.getNic());
-             //   txtDate.setText(String.valueOf(customer).getDate());
+                LocalDate now = LocalDate.now();
+               txtDate.setText(String.valueOf(now));
             } else {
                 new Alert(Alert.AlertType.INFORMATION, "customer not found!").show();
             }
@@ -213,6 +215,5 @@ public class CustomerFormController {
                 new Alert(Alert.AlertType.ERROR, e.getMessage()).show();
             }
         }
-
     }
 

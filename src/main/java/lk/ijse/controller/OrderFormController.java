@@ -1,13 +1,20 @@
-//package lk.ijse.controller;
+package lk.ijse.controller;
+
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Scene;
+import javafx.scene.control.*;
+import javafx.scene.layout.AnchorPane;
+import javafx.stage.Stage;
 
-/*public class OrderFormController {
+
+import java.io.IOException;
+import java.sql.Date;
+import java.sql.SQLException;
+
+public class OrderFormController {
 
     @FXML
     private Button btnBACK;
@@ -67,13 +74,30 @@ import javafx.scene.control.TextField;
     private TextField txtUserId;
 
     @FXML
-    void btnBACKOnAction(ActionEvent event) {
+    private AnchorPane rootNode;
 
+    @FXML
+    void btnBACKOnAction(ActionEvent event) throws IOException {
+        AnchorPane anchorPane = FXMLLoader.load(getClass().getResource("/view/DashboardForm.fxml"));
+        Stage stage = (Stage) rootNode.getScene().getWindow();
+
+        stage.setScene(new Scene(anchorPane));
+        stage.setTitle("Dashboard Form");
+        stage.centerOnScreen();
     }
 
     @FXML
     void btnCLEAROnAction(ActionEvent event) {
+        clearFields();
+    }
 
+    private void clearFields() {
+        txtOrderId.setText("");
+        txtDate.setText("");
+        txtPrice.setText("");
+        txtCustomerId.setText("");
+        txtPaymentId.setText("");
+        txtUserId.setText("");
     }
 
     @FXML
@@ -97,4 +121,3 @@ import javafx.scene.control.TextField;
     }
 
 }
-*/

@@ -6,6 +6,7 @@ import java.sql.Date;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
+
 public class CustomerTm {
         private String Customer_id;
         private String Customer_name;
